@@ -7,7 +7,7 @@ import com.clinicaestetica.Models.Enums.Status;
 
 public class Atendimento {
 	private static int idAtual = 0;
-	
+	private int teste;
 	private int id;
 	private LocalDateTime data; 
 	private int clienteId;
