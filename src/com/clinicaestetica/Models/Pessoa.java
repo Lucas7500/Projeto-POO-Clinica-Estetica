@@ -2,55 +2,64 @@ package com.clinicaestetica.Models;
 
 public abstract class Pessoa {
 	private String nomeCompleto;
-	private String cpf;
-	private String contato;
+	private  Long  cpf;
+	private  Long contato;
 	private char genero;
+	// dados em Long para poder fazer a conversão em string caso necessário
 	
-	public Pessoa(String nomeCompleto, String cpf, String contato, char genero) {
+	
+	
+	@Override
+	public String toString() {
+		return String.format("Nome Completo: %s\nCPF: %s\nGênero: %c\nTelefone: %s\n",
+				getNomeCompleto(), getCpf(), getGenero(), getContato());
+	}
+
+
+	public Pessoa(String nomeCompleto, Long cpf, Long contato, char genero) {
 		this.nomeCompleto = nomeCompleto;
 		this.cpf = cpf;
 		this.contato = contato;
 		this.genero = genero;
 	}
 
-	public Pessoa() {
-	}
 
 	public String getNomeCompleto() {
 		return nomeCompleto;
 	}
-	
+
+
 	public void setNomeCompleto(String nomeCompleto) {
 		this.nomeCompleto = nomeCompleto;
 	}
-	
-	public String getCpf() {
+
+
+	public Long getCpf() {
 		return cpf;
 	}
-	
-	public void setCpf(String cpf) {
+
+
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
-	
-	public String getTelefone() {
+
+
+	public Long getContato() {
 		return contato;
 	}
-	
-	public void setTelefone(String telefone) {
-		this.contato = telefone;
+
+
+	public void setContato(Long contato) {
+		this.contato = contato;
 	}
-	
+
+
 	public char getGenero() {
 		return genero;
 	}
-	
+
+
 	public void setGenero(char genero) {
 		this.genero = genero;
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("Nome Completo: %s\nCPF: %s\nGênero: %c\nTelefone: %s\n",
-				getNomeCompleto(), getCpf(), getGenero(), getTelefone());
 	}
 }

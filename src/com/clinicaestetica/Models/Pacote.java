@@ -3,6 +3,7 @@ package com.clinicaestetica.Models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.clinicaestetica.Models.Enums.Pagamento;
 import com.clinicaestetica.Models.Enums.TipoPacote;
 
 public class Pacote {
@@ -10,30 +11,67 @@ public class Pacote {
 	
 	private int id;
 	private TipoPacote tipoPacote;
-	private List<Profissional> profissionais;
 	private List<Sessao> sessoes;
-	private double valorPacote;
 	private double valorUnitario;
+	private int qntd;
+	
+	
+	public void sessaoSemCobranca() {
+		valorUnitario = 0.0;
+	}
+	public void addSessao(Sessao s) {
+		sessoes.add(s);
+		if(s.getPagamento().equals(Pagamento.SEM_COBRANCA)) {
+			sessaoSemCobranca();
+		}
+	}
+	
+	public boolean pacoteDisponivel() {
+		boolean listaCheia = sessoes.size() == qntd;
+		return listaCheia;
+	}
+	
+	public double valorPacote() {
+		switch (tipoPacote){ 
+			case COMUM:
+				return 4*valorUnitario; 
+			case VIP: 
+				return 6*valorUnitario; 
+			case PREMIUM:
+				return 10*valorUnitario; 
+			case UNICO: 
+				return valorUnitario; 
+			default: 
+				return 0.0;
+		}
+	}
 	
 	public Pacote(TipoPacote tipoPacote) {
 		this.id = ++idAtual;
 		
 		if(tipoPacote.equals(TipoPacote.COMUM)) {
 			this.sessoes = new ArrayList<>(4);
+			this.qntd = 4;
 			valorUnitario = 180;
-			setValorPacote(valorUnitario*4); 
 		}
 		else {
 			if(tipoPacote.equals(TipoPacote.VIP)) {
 				this.sessoes = new ArrayList<>(6);
+				this.qntd = 6;
 				valorUnitario = 150;
-				setValorPacote(valorUnitario*6); 
 			}			
 			else {
 				if(tipoPacote.equals(TipoPacote.PREMIUM)) {
 					this.sessoes = new ArrayList<>(10);
+					this.qntd = 10;
 					valorUnitario = 130;
-					setValorPacote(valorUnitario*10); 
+				}
+				else {
+					if(tipoPacote.equals(TipoPacote.UNICO)) {
+						this.sessoes = new ArrayList<Sessao>(1);
+						this.qntd = 1;
+						valorUnitario = 200;
+					}
 				}
 			}
 		}
@@ -51,14 +89,6 @@ public class Pacote {
 	public void setTipoPacote(TipoPacote tipoPacote) {
 		this.tipoPacote = tipoPacote;
 	}
-
-	public List<Profissional> getProfissionais() {
-		return profissionais;
-	}
-
-	public void setProfissionais(List<Profissional> profissionais) {
-		this.profissionais = profissionais;
-	}
 	
 	public void setSessoes(List<Sessao> sessoes) {
 		this.sessoes = sessoes;
@@ -66,14 +96,6 @@ public class Pacote {
 
 	public List<Sessao> getSessoes() {
 		return sessoes;
-	}
-
-	public double getValorPacote() {
-		return valorPacote;
-	}
-
-	public void setValorPacote(double valorPacote) {
-		this.valorPacote = valorPacote;
 	}
 
 	

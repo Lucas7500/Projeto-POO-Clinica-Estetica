@@ -1,14 +1,20 @@
 package com.clinicaestetica.Models;
 
+import java.util.List;
+
 public class Cliente extends Pessoa {
 	private static int idAtual = 0;
 	
 	private int id;
-	private Pacote pacote;
+	private List<Pacote> pacotes;
 	
-	public Cliente() {}
 	
-	public Cliente(String nomeCompleto, String cpf, String contato, char genero) {
+	
+	public void addPacote(Pacote p) {
+		pacotes.add(p);
+	}
+	
+	public Cliente(String nomeCompleto, Long cpf, Long contato, char genero) {
 		super(nomeCompleto, cpf, contato, genero);
 		this.id = ++idAtual;
 	}
@@ -17,15 +23,18 @@ public class Cliente extends Pessoa {
 		return id;
 	}
 
-	public Pacote getPacote() {
-		return pacote;
+	public List<Pacote> getPacotes() {
+		return pacotes;
 	}
 
-	public void setPacote(Pacote pacote) {
-		this.pacote = pacote;
+	public void setPacotes(List<Pacote> pacotes) {
+		this.pacotes = pacotes;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	
-	public boolean possuiPacote() {
-		return pacote != null;
-	}
+	
 }

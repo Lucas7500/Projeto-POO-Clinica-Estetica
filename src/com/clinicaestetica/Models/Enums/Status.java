@@ -4,5 +4,5 @@ public enum Status {
 	CONCLUIDO,
 	REMARCADO,
 	CANCELADO,
-	EM_ATENDIMENTO;
+	AGENDADO;
 }

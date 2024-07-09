@@ -6,7 +6,8 @@ public class Profissional extends Pessoa {
 	private int id;
 	private boolean disponivel;
 
-	public Profissional(String nomeCompleto, String cpf, String contato, char genero) {
+	
+	public Profissional(String nomeCompleto, Long cpf, Long contato, char genero) {
 		super(nomeCompleto, cpf, contato, genero);
 		this.id = ++idAtual;
 	}
@@ -17,7 +18,7 @@ public class Profissional extends Pessoa {
 
 	public boolean isDisponivel() {
 		return disponivel;
-	}
+	} 
 
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
