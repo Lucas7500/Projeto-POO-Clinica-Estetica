@@ -25,7 +25,7 @@ public class Sessao {
 		switch (sts){ 
 			case REMARCADO:
 				data = dat;
-				// n precisa aalterar o status, pois estará agendado dnv
+				// n precisa alterar o status, pois estará agendado dnv
 				break;
 			case CONCLUIDO: 
 				status = sts;
@@ -39,6 +39,21 @@ public class Sessao {
 		}
 	}
 	
+	public void alterarPagamento(Pagamento pg ) {
+		switch (pg){ 
+			case EFETUADO:
+				this.pagamento = Pagamento.EFETUADO;
+				break;
+			case PENDENTE: 
+				this.pagamento = Pagamento.PENDENTE;
+				break;
+			case SEM_COBRANCA:
+				this.pagamento = Pagamento.SEM_COBRANCA;
+				break;
+			default: 
+				break;
+		}
+	}
 	public void addObservacao(String obs) {
 		this.observacao = obs; 
 	}
@@ -70,9 +85,6 @@ public class Sessao {
 		return pagamento;
 	}
 
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
-	}
 
 	public Status getStatus() {
 		return status;
@@ -100,6 +112,12 @@ public class Sessao {
 
 	public void setClinica(Clinica clinica) {
 		this.clinica = clinica;
+	}
+
+	@Override
+	public String toString() {
+		return "\n\nid:" + id + "   -   data: " + data + "\nobservacao: " + observacao + "\npagamento:" + pagamento
+				+ "\nprofissional:  " + profissional ;
 	}
 	
 }

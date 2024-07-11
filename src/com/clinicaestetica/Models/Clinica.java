@@ -1,5 +1,6 @@
 package com.clinicaestetica.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Clinica {
@@ -11,10 +12,12 @@ public class Clinica {
 	
 	
 	public void addProfissional(Profissional p) {
+		
 		profissionais.add(p);
 	}
 	
-	public Clinica(int id, String endereco, List<Profissional> profissionais) {
+	public Clinica(String endereco) {
+		profissionais = new ArrayList<>();
 		this.id = ++idAtual;
 		this.endereco = endereco;
 		

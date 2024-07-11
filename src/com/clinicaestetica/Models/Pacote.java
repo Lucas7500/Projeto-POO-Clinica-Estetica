@@ -19,15 +19,18 @@ public class Pacote {
 	public void sessaoSemCobranca() {
 		valorUnitario = 0.0;
 	}
+	
 	public void addSessao(Sessao s) {
-		sessoes.add(s);
-		if(s.getPagamento().equals(Pagamento.SEM_COBRANCA)) {
-			sessaoSemCobranca();
+		if(!pacoteDisponivel()) {
+			sessoes.add(s);
+			if(s.getPagamento().equals(Pagamento.SEM_COBRANCA)) {
+				sessaoSemCobranca();
+			}
 		}
 	}
 	
 	public boolean pacoteDisponivel() {
-		boolean listaCheia = sessoes.size() == qntd;
+		boolean listaCheia = (sessoes.size() == qntd);
 		return listaCheia;
 	}
 	
@@ -53,24 +56,28 @@ public class Pacote {
 			this.sessoes = new ArrayList<>(4);
 			this.qntd = 4;
 			valorUnitario = 180;
+			this.tipoPacote = TipoPacote.COMUM;
 		}
 		else {
 			if(tipoPacote.equals(TipoPacote.VIP)) {
 				this.sessoes = new ArrayList<>(6);
 				this.qntd = 6;
 				valorUnitario = 150;
+				this.tipoPacote = TipoPacote.VIP;
 			}			
 			else {
 				if(tipoPacote.equals(TipoPacote.PREMIUM)) {
 					this.sessoes = new ArrayList<>(10);
 					this.qntd = 10;
 					valorUnitario = 130;
+					this.tipoPacote = TipoPacote.PREMIUM;
 				}
 				else {
 					if(tipoPacote.equals(TipoPacote.UNICO)) {
 						this.sessoes = new ArrayList<Sessao>(1);
 						this.qntd = 1;
 						valorUnitario = 200;
+						this.tipoPacote = TipoPacote.UNICO;
 					}
 				}
 			}
@@ -96,6 +103,12 @@ public class Pacote {
 
 	public List<Sessao> getSessoes() {
 		return sessoes;
+	}
+
+	@Override
+	public String toString() {
+		return "idPacote: " + id + "  -  tipoPacote: " + tipoPacote 
+				+ "\n Sessoes: \n" + sessoes ;
 	}
 
 	
