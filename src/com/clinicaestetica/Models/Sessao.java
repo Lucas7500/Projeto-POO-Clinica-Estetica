@@ -18,6 +18,7 @@ public class Sessao {
 	private Profissional profissional;
 	private Cliente cliente;
 	private Clinica clinica;
+	private double valor;
 	
 	
 	
@@ -28,6 +29,7 @@ public class Sessao {
 				// n precisa alterar o status, pois estará agendado dnv
 				break;
 			case CONCLUIDO: 
+				// adicionar chamada na função de contabilidade para o valor ir para a clínica e para o profissional
 				status = sts;
 				break;
 			case CANCELADO:
@@ -67,8 +69,16 @@ public class Sessao {
 		this.profissional = profissional;
 		this.cliente = cliente;
 		this.clinica = clinica;
+		
 	}
-
+	
+	//função chamada dentro da classe pacote
+	//recebe 70% da sessão e a clinica contabiliza 100%
+	public void valorParaProfissional() {
+		this.profissional.contabilidade(valor*0.7);
+		this.clinica.contabilidade(valor);
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -113,7 +123,14 @@ public class Sessao {
 	public void setClinica(Clinica clinica) {
 		this.clinica = clinica;
 	}
-
+	
+	public double getValor() {
+		return valor;
+	}
+	
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
 	@Override
 	public String toString() {
 		return "\n\nid:" + id + "   -   data: " + data + "\nobservacao: " + observacao + "\npagamento:" + pagamento

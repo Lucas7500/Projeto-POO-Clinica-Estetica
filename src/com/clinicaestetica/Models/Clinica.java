@@ -3,13 +3,19 @@ package com.clinicaestetica.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Clinica {
+import com.clinicaestetica.Models.Interfaces.Financeiro;
+
+public class Clinica
+			implements Financeiro{
 	private static int idAtual;
 	private int id;
 	private String endereco;
 	private List<Profissional> profissionais;
+	private double contabilidadeClinica;
 	
-	
+	public void contabilidade(double valor) {
+		contabilidadeClinica +=valor;
+	}
 	
 	public void addProfissional(Profissional p) {
 		
@@ -20,8 +26,10 @@ public class Clinica {
 		profissionais = new ArrayList<>();
 		this.id = ++idAtual;
 		this.endereco = endereco;
+		this.contabilidadeClinica = 0;
 		
 	}
+	
 	
 	public int getId() {
 		return id;
@@ -39,4 +47,7 @@ public class Clinica {
 		this.profissionais = profissionais;
 	}
 	
+	public double contabilidadeClinica() {
+		return contabilidadeClinica;
+	}
 }

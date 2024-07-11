@@ -17,7 +17,9 @@ public class Pacote {
 	
 	
 	public void sessaoSemCobranca() {
-		valorUnitario = 0.0;
+		if(TipoPacote.UNICO == tipoPacote) {
+			valorUnitario = 0.0;
+		}	
 	}
 	
 	public void addSessao(Sessao s) {
@@ -25,10 +27,16 @@ public class Pacote {
 			sessoes.add(s);
 			if(s.getPagamento().equals(Pagamento.SEM_COBRANCA)) {
 				sessaoSemCobranca();
+				if(valorUnitario != 0) {
+					s.alterarPagamento(Pagamento.PENDENTE);
+				}
 			}
 		}
+		s.setValor(valorUnitario);
+		s.valorParaProfissional();
 	}
 	
+	//Used in addSessao
 	public boolean pacoteDisponivel() {
 		boolean listaCheia = (sessoes.size() == qntd);
 		return listaCheia;
@@ -103,6 +111,10 @@ public class Pacote {
 
 	public List<Sessao> getSessoes() {
 		return sessoes;
+	}
+	
+	public double getValorUnitario() {
+		return valorUnitario;
 	}
 
 	@Override

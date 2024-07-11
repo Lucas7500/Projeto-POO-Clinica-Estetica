@@ -57,7 +57,7 @@ public class Main {
 		// Realizar uma Sessão
 		// LocalDateTime data, Pagamento pagamento,Profissional profissional, Cliente cliente, Clinica clinica) {
 		LocalDateTime atend = LocalDateTime.of(2024, 3, 15, 14, 00);
-		Sessao s1 = new Sessao(atend, Pagamento.EFETUADO,p1, cliente3, clinica1);
+		Sessao s1 = new Sessao(atend, Pagamento.SEM_COBRANCA,p1, cliente3, clinica1);
 		cliente3.addSessaPacote(s1);
 		
 		atend = LocalDateTime.of(2024, 11, 8, 16, 00);

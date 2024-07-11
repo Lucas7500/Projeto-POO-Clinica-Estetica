@@ -3,15 +3,17 @@ package com.clinicaestetica.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.clinicaestetica.Models.Enums.Pagamento;
+import com.clinicaestetica.Models.Interfaces.Financeiro;
 
-public class Cliente extends Pessoa {
+
+
+public class Cliente extends Pessoa
+					implements Financeiro{
 	private static int idAtual = 0;
 	
 	private int id;
 	private List<Pacote> pacotes;
-	
-	
+	private double contabSessoes;
 	
 	public void addPacote(Pacote p) {
 		pacotes.add(p);
@@ -20,12 +22,19 @@ public class Cliente extends Pessoa {
 	public void addSessaPacote(Sessao s) {
 		Pacote pacote = pacotes.getLast();
 		pacote.addSessao(s);
+		contabilidade(s.getValor());
+	}
+	
+	@Override
+	public void contabilidade(double valor) {
+		this.contabSessoes += valor;
 	}
 	
 	public Cliente(String nomeCompleto, Long cpf, Long contato, char genero) {
 		super(nomeCompleto, cpf, contato, genero);
 		this.pacotes = new ArrayList<>();
 		this.id = ++idAtual;
+		contabSessoes = 0;
 	}
 
 	public int getId() {
@@ -43,7 +52,10 @@ public class Cliente extends Pessoa {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	public double  getContabSessoes() {
+		return contabSessoes;
+	}
 	@Override
 	public String toString() {
 		
