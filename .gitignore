@@ -84,3 +84,6 @@ local.properties
 #.project
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Java,Eclipse
+
+*.vscode
+*.bin

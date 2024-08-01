@@ -1,20 +1,13 @@
 package com.clinicaestetica.Models;
 
-import com.clinicaestetica.Models.Interfaces.Financeiro;
-
-public class Profissional extends Pessoa
-						implements Financeiro{
+public class Profissional extends Pessoa {
 	private static int idAtual = 0;
 	
 	private int id;
 	private boolean disponivel;
 	private double contabAtendimentos;
 	
-	public void contabilidade(double valor) {
-		this.contabAtendimentos += valor;
-	}
-	
-	public Profissional(String nomeCompleto, Long cpf, Long contato, char genero) {
+	public Profissional(String nomeCompleto, String cpf, String contato, char genero) {
 		super(nomeCompleto, cpf, contato, genero);
 		this.id = ++idAtual;
 		this.contabAtendimentos = 0;
@@ -32,9 +25,14 @@ public class Profissional extends Pessoa
 		this.disponivel = disponivel;
 	}
 	
+	public void contabilidade(double valor) {
+		this.contabAtendimentos += valor;
+	}
+
 	public double getContabAtendimentos() {
 		return contabAtendimentos;
 	}
+
 	@Override
 	public String toString() {
 		 return   getNomeCompleto() + " - CPF:"+getCpf() + " -  telefone: "+ getContato()+ " - Genero: "+ getGenero();

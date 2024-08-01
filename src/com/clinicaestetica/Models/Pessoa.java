@@ -1,64 +1,50 @@
 package com.clinicaestetica.Models;
 
-public abstract class Pessoa {
+import java.io.Serializable;
+
+import com.clinicaestetica.Models.Interfaces.Financeiro;
+
+public abstract class Pessoa implements Serializable, Financeiro{
 	private String nomeCompleto;
-	private  Long  cpf;
-	private  Long contato;
+	private String cpf;
+	private String contato;
 	private char genero;
-	// dados em Long para poder fazer a conversão em string caso necessário
-	
-	
-	
-	@Override
-	public String toString() {
-		return String.format("Nome Completo: %s\nCPF: %s\nGênero: %c\nTelefone: %s\n",
-				getNomeCompleto(), getCpf(), getGenero(), getContato());
-	}
 
-
-	public Pessoa(String nomeCompleto, Long cpf, Long contato, char genero) {
+	public Pessoa(String nomeCompleto, String cpf, String contato, char genero) {
 		this.nomeCompleto = nomeCompleto;
 		this.cpf = cpf;
 		this.contato = contato;
 		this.genero = genero;
 	}
 
-
 	public String getNomeCompleto() {
 		return nomeCompleto;
 	}
-
 
 	public void setNomeCompleto(String nomeCompleto) {
 		this.nomeCompleto = nomeCompleto;
 	}
 
-
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-
-	public Long getContato() {
+	public String getContato() {
 		return contato;
 	}
 
-
-	public void setContato(Long contato) {
+	public void setContato(String contato) {
 		this.contato = contato;
 	}
-
 
 	public char getGenero() {
 		return genero;
 	}
-
-
+	
 	public void setGenero(char genero) {
 		this.genero = genero;
 	}

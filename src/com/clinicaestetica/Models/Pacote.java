@@ -1,12 +1,13 @@
 package com.clinicaestetica.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.clinicaestetica.Models.Enums.Pagamento;
 import com.clinicaestetica.Models.Enums.TipoPacote;
 
-public class Pacote {
+public class Pacote implements Serializable {
 	private static int idAtual = 0;
 	
 	private int id;
@@ -15,7 +16,64 @@ public class Pacote {
 	private double valorUnitario;
 	private int qntd;
 	
+	public Pacote(TipoPacote tipoPacote) {
+		this.id = ++idAtual;
+		
+		switch (tipoPacote) {
+			case COMUM:
+				this.sessoes = new ArrayList<>(4);
+				this.qntd = 4;
+				valorUnitario = 180;
+				this.tipoPacote = TipoPacote.COMUM;
+				break;
+
+			case VIP:
+				this.sessoes = new ArrayList<>(6);
+				this.qntd = 6;
+				valorUnitario = 150;
+				this.tipoPacote = TipoPacote.VIP;	
+				break;
+
+			case PREMIUM:
+				this.sessoes = new ArrayList<>(10);
+				this.qntd = 10;
+				valorUnitario = 130;
+				this.tipoPacote = TipoPacote.PREMIUM;
+				break;
+
+			case UNICO:
+				this.sessoes = new ArrayList<Sessao>(1);
+				this.qntd = 1;
+				valorUnitario = 200;
+				this.tipoPacote = TipoPacote.UNICO;
+			break;
+		}
+	}
+
+	public int getId() {
+		return id;
+	}
 	
+	public TipoPacote getTipoPacote() {
+		return tipoPacote;
+	}
+
+	public void setTipoPacote(TipoPacote tipoPacote) {
+		this.tipoPacote = tipoPacote;
+	}
+	
+	public void setSessoes(List<Sessao> sessoes) {
+		this.sessoes = sessoes;
+	}
+
+	public List<Sessao> getSessoes() {
+		return sessoes;
+	}
+	
+	public double getValorUnitario() {
+		return valorUnitario;
+	}
+
 	public void sessaoSemCobranca() {
 		if(TipoPacote.UNICO == tipoPacote) {
 			valorUnitario = 0.0;
@@ -56,72 +114,10 @@ public class Pacote {
 				return 0.0;
 		}
 	}
-	
-	public Pacote(TipoPacote tipoPacote) {
-		this.id = ++idAtual;
-		
-		if(tipoPacote.equals(TipoPacote.COMUM)) {
-			this.sessoes = new ArrayList<>(4);
-			this.qntd = 4;
-			valorUnitario = 180;
-			this.tipoPacote = TipoPacote.COMUM;
-		}
-		else {
-			if(tipoPacote.equals(TipoPacote.VIP)) {
-				this.sessoes = new ArrayList<>(6);
-				this.qntd = 6;
-				valorUnitario = 150;
-				this.tipoPacote = TipoPacote.VIP;
-			}			
-			else {
-				if(tipoPacote.equals(TipoPacote.PREMIUM)) {
-					this.sessoes = new ArrayList<>(10);
-					this.qntd = 10;
-					valorUnitario = 130;
-					this.tipoPacote = TipoPacote.PREMIUM;
-				}
-				else {
-					if(tipoPacote.equals(TipoPacote.UNICO)) {
-						this.sessoes = new ArrayList<Sessao>(1);
-						this.qntd = 1;
-						valorUnitario = 200;
-						this.tipoPacote = TipoPacote.UNICO;
-					}
-				}
-			}
-		}
-		
-	}
-
-	public int getId() {
-		return id;
-	}
-	
-	public TipoPacote getTipoPacote() {
-		return tipoPacote;
-	}
-
-	public void setTipoPacote(TipoPacote tipoPacote) {
-		this.tipoPacote = tipoPacote;
-	}
-	
-	public void setSessoes(List<Sessao> sessoes) {
-		this.sessoes = sessoes;
-	}
-
-	public List<Sessao> getSessoes() {
-		return sessoes;
-	}
-	
-	public double getValorUnitario() {
-		return valorUnitario;
-	}
 
 	@Override
 	public String toString() {
 		return "idPacote: " + id + "  -  tipoPacote: " + tipoPacote 
 				+ "\n Sessoes: \n" + sessoes ;
 	}
-
-	
 }

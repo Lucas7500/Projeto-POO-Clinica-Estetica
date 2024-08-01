@@ -1,13 +1,14 @@
 package com.clinicaestetica.Models;
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.clinicaestetica.Models.Enums.Pagamento;
 import com.clinicaestetica.Models.Enums.Status;
 
 
-public class Sessao {
+public class Sessao implements Serializable{
 	private static int idAtual = 0;
 	
 	private int id;
@@ -20,7 +21,15 @@ public class Sessao {
 	private Clinica clinica;
 	private double valor;
 	
-	
+	public Sessao(LocalDateTime data, Pagamento pagamento,Profissional profissional, Cliente cliente, Clinica clinica) {
+		this.id = ++idAtual;
+		this.data = data;
+		this.pagamento = pagamento;
+		this.status = Status.AGENDADO;
+		this.profissional = profissional;
+		this.cliente = cliente;
+		this.clinica = clinica;
+	}
 	
 	public void alterarStatus(Status sts,LocalDateTime dat ) {
 		switch (sts){ 
@@ -58,18 +67,6 @@ public class Sessao {
 	}
 	public void addObservacao(String obs) {
 		this.observacao = obs; 
-	}
-	
-
-	public Sessao( LocalDateTime data, Pagamento pagamento,Profissional profissional, Cliente cliente, Clinica clinica) {
-		this.id = ++idAtual;
-		this.data = data;
-		this.pagamento = pagamento;
-		this.status = Status.AGENDADO;
-		this.profissional = profissional;
-		this.cliente = cliente;
-		this.clinica = clinica;
-		
 	}
 	
 	//função chamada dentro da classe pacote
@@ -131,10 +128,10 @@ public class Sessao {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	
 	@Override
 	public String toString() {
 		return "\n\nid:" + id + "   -   data: " + data + "\nobservacao: " + observacao + "\npagamento:" + pagamento
 				+ "\nprofissional:  " + profissional ;
 	}
-	
 }
