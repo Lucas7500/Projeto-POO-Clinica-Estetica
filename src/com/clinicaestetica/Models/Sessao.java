@@ -39,6 +39,7 @@ public class Sessao implements Serializable{
 				break;
 			case CONCLUIDO: 
 				// adicionar chamada na função de contabilidade para o valor ir para a clínica e para o profissional
+				valorParaProfissional();
 				status = sts;
 				break;
 			case CANCELADO:

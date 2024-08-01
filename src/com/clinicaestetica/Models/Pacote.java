@@ -74,6 +74,10 @@ public class Pacote implements Serializable {
 		return valorUnitario;
 	}
 
+	public int getqntd() {
+		return qntd;
+	}
+
 	public void sessaoSemCobranca() {
 		if(TipoPacote.UNICO == tipoPacote) {
 			valorUnitario = 0.0;
@@ -89,9 +93,8 @@ public class Pacote implements Serializable {
 					s.alterarPagamento(Pagamento.PENDENTE);
 				}
 			}
+			s.setValor(valorUnitario);
 		}
-		s.setValor(valorUnitario);
-		s.valorParaProfissional();
 	}
 	
 	//Used in addSessao
@@ -114,7 +117,7 @@ public class Pacote implements Serializable {
 				return 0.0;
 		}
 	}
-
+	
 	@Override
 	public String toString() {
 		return "idPacote: " + id + "  -  tipoPacote: " + tipoPacote 

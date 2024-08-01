@@ -1,4 +1,4 @@
-package com.clinicaestetica.Repositories;
+package com.clinicaestetica.Repositories.Common;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,8 +15,8 @@ import com.clinicaestetica.Models.Pacote;
 import com.clinicaestetica.Models.Profissional;
 import com.clinicaestetica.Models.Sessao;
 
-public class Repository<T> {
-    private static String filePath;
+public abstract class Repository<T> {
+    protected static String filePath;
 
     private final static String FilePathClinicas = "Clinicas.bin";
     private final static String FilePathProfissionais = "Profissionais.bin";
@@ -73,7 +73,7 @@ public class Repository<T> {
         }
     }
 
-    private List<T> lerArquivo(File arq) {
+    protected List<T> lerArquivo(File arq) {
         var objetos = new ArrayList<T>();
         
         try {

@@ -50,7 +50,7 @@ public class Clinica implements Serializable, Financeiro {
 		contabilidadeClinica +=valor;
 	}
 	
-	public double contabilidadeClinica() {
+	public double getcontabilidadeClinica() {
 		return contabilidadeClinica;
 	}
 
