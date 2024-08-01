@@ -19,8 +19,10 @@ public class Cliente extends Pessoa
 		pacotes.add(p);
 	}
 	
+	// aqui(15:30)
 	public void addSessaPacote(Sessao s) {
-		Pacote pacote = pacotes.getLast();
+		
+		Pacote pacote = pacotes.get(pacotes.size() - 1);
 		pacote.addSessao(s);
 		contabilidade(s.getValor());
 	}

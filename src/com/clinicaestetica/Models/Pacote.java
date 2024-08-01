@@ -31,9 +31,8 @@ public class Pacote {
 					s.alterarPagamento(Pagamento.PENDENTE);
 				}
 			}
+			s.setValor(valorUnitario);
 		}
-		s.setValor(valorUnitario);
-		s.valorParaProfissional();
 	}
 	
 	//Used in addSessao
@@ -116,7 +115,10 @@ public class Pacote {
 	public double getValorUnitario() {
 		return valorUnitario;
 	}
-
+	
+	public int getqntd() {
+		return qntd;
+	}
 	@Override
 	public String toString() {
 		return "idPacote: " + id + "  -  tipoPacote: " + tipoPacote 

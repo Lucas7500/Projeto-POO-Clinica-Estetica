@@ -30,6 +30,7 @@ public class Sessao {
 				break;
 			case CONCLUIDO: 
 				// adicionar chamada na função de contabilidade para o valor ir para a clínica e para o profissional
+				valorParaProfissional();
 				status = sts;
 				break;
 			case CANCELADO:
@@ -60,7 +61,6 @@ public class Sessao {
 		this.observacao = obs; 
 	}
 	
-
 	public Sessao( LocalDateTime data, Pagamento pagamento,Profissional profissional, Cliente cliente, Clinica clinica) {
 		this.id = ++idAtual;
 		this.data = data;
@@ -72,7 +72,7 @@ public class Sessao {
 		
 	}
 	
-	//função chamada dentro da classe pacote
+	//função chamada dentro da alteração de Status, pois ao ser concluida td mundo recebe pagamento
 	//recebe 70% da sessão e a clinica contabiliza 100%
 	public void valorParaProfissional() {
 		this.profissional.contabilidade(valor*0.7);

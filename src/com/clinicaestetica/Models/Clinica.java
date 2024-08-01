@@ -47,7 +47,7 @@ public class Clinica
 		this.profissionais = profissionais;
 	}
 	
-	public double contabilidadeClinica() {
+	public double getcontabilidadeClinica() {
 		return contabilidadeClinica;
 	}
 }
