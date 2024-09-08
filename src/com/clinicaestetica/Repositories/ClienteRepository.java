@@ -42,7 +42,7 @@ public class ClienteRepository extends Repository<Cliente> {
                     clienteCadastrado.setCpf(cliente.getCpf());
                     clienteCadastrado.setGenero(cliente.getGenero());
                     clienteCadastrado.setNomeCompleto(cliente.getNomeCompleto());
-                    cliente.setPacotes(cliente.getPacotes());
+                    clienteCadastrado.setPacotes(cliente.getPacotes());
                     break;
                 }
             }
